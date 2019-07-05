@@ -1,0 +1,17 @@
+[Unit]
+Description=blockwizard daemon
+After=network.target
+
+[Service]
+PIDFile=/run/blockwizard.pid
+User={{ runner }}
+Group={{ groupowner }}
+Type=forking
+ExecStart=/usr/bin/bash -c "{{ top }}/start.sh {{ inventory_hostname }}"
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=on-failure
+RestartSec=2s
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target

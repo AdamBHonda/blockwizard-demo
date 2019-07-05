@@ -1,0 +1,20 @@
+---
+# create a group to share ownership bwetwwn run acct and owner acct
+- name: groupowner 
+  group:
+    name={{ groupowner }}
+
+# create a user that can own, deploy and modify code
+- name: owner
+  user:
+    name={{ owner }}
+    group={{ groupowner }}
+    shell=/bin/bash
+
+# create a user that can run code but no write access apart from logs
+- name: runner
+  user:
+    name={{ runner }}
+    group={{ groupowner }}
+    shell=/bin/bash
+

@@ -1,0 +1,29 @@
+---
+# deliver the application jar
+# note : normally this would be from a repo, but here we'll just copy it from source
+- name: deploy app
+  copy:
+    src=blockwizard-0.1.2.jar
+    dest={{ top }}
+    owner={{ owner }}
+    group={{ groupowner }}
+    mode=0750
+
+# deliver the properties file for each host
+- name: deploy properties
+  copy:
+    src=application-{{ inventory_hostname }}.properties
+    dest={{ top }}
+    owner={{ owner }}
+    group={{ groupowner }}
+    mode=0640
+
+# deliver the start script for the app
+- name: deploy start script
+  copy:
+    src=start.sh
+    dest={{ top }}
+    owner={{ owner }}
+    group={{ groupowner }}
+    mode=0750
+

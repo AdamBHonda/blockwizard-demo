@@ -1,0 +1,24 @@
+---
+# create a systemd service that auto-restarts the app
+- name: deploy systemd
+  template:
+    src=blockwizard.service
+    dest=/etc/systemd/system/multi-user.target.wants/
+    owner=root
+    group=root
+    mode=0644
+  #notify:
+    #- reload systemctl
+
+# Docker, centos and systemd are NOT friends so skipping this
+# start it!
+#- name: start service
+  #service:
+    #name=blockwizard.service
+    #state=started
+    #enabled=yes
+
+# for Docker, just start the app
+- name: start app from script
+  become_user: "{{ runner }}"
+  shell: "cd {{ logs }} && nohup {{ top }}/start.sh {{ inventory_hostname }} > {{ logs }}/blockwizard.out 2>&1 &"

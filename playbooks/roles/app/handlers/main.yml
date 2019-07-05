@@ -1,0 +1,4 @@
+---
+# changes to systemd files are picked up after a reload
+- name: reload systemctl
+  command: systemctl daemon-reload

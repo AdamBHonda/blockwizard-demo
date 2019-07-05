@@ -1,0 +1,13 @@
+---
+# split tasks to allow running of individual components with ansible-playbook -t
+
+# deliver the code and scripts
+- name: deploy app
+  include: deliver.yml
+  tags: deliver
+
+# start scripts and run it!
+- name: start the app
+  include: start.yml
+  tags: start
+

@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  broker:
+    image: adambhonda/centos-ssh:latest
+    hostname: broker
+    volumes:
+      - ./.ssh:/root/.ssh
+    networks:
+      - mynet
+    ports:
+      - "2224:22"
+      - "16000:16000"
+
+  node1:
+    image: adambhonda/centos-ssh:latest
+    hostname: node1
+    volumes:
+      - ./.ssh:/root/.ssh
+    networks:
+      - mynet
+    ports:
+      - "2225:22"
+      - "16001:16001"
+
+  node2:
+    image: adambhonda/centos-ssh:latest
+    hostname: node2
+    volumes:
+      - ./.ssh:/root/.ssh
+    networks:
+      - mynet
+    ports:
+      - "2226:22"
+      - "16002:16002"
+
+networks:
+  mynet:

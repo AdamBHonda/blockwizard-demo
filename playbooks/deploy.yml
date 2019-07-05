@@ -1,0 +1,12 @@
+---
+- hosts: all
+  user: root
+  roles:
+    - role: init # initialise environment
+    - role: app # deploy and start application
+  vars:
+    owner: owner
+    runner: runner
+    groupowner: owner
+    top: /app
+    logs: /var/log/blockwizard

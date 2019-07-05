@@ -1,0 +1,10 @@
+---
+# split tasks to allow running of individual components with ansible-playbook -t
+- name: Users and Groups
+  include: users.yml
+  tags: users
+
+- name: Filesystem structure
+  include: filesystem.yml
+  tags: filesystem
+

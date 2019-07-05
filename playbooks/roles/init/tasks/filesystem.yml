@@ -1,0 +1,18 @@
+---
+# Create a filesystem layout for the application, logs and properties
+- name: create application filesystem
+  file:
+    path={{ top }}
+    owner={{ owner }}
+    group={{ groupowner }}
+    mode=0750
+    state=directory
+
+- name: create logs
+  file:
+    path={{ logs }}
+    owner={{ owner }}
+    group={{ groupowner }}
+    mode=0770
+    state=directory
+
